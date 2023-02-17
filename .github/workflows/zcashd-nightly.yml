@@ -3,6 +3,9 @@ name: zcashd-nightly
 on:
   schedule:
     - cron: '0 6 * * *' # Every day at 6:00 AM UTC.
+  push:
+    branches:
+      - ci
 
 jobs:
   install-zcashd:
@@ -27,16 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: nightly
-          override: true
       - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --all-targets --no-run
+      - name: Compile unit tests
+        run: cargo test --all-targets --no-run
       - uses: actions/upload-artifact@v3
         with:
           name: ziggurat-executable
