@@ -3,9 +3,6 @@ name: zebra
 on:
   schedule:
     - cron: '0 6 * * *' # Every day at 6:00 AM UTC.
-  push:
-    branches:
-      - ci
 
 jobs:
   build-zebra:
