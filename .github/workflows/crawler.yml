@@ -67,4 +67,4 @@ jobs:
 
   call-crunchy-workflow:
     needs: [ crawl-network ]
-    uses: zeapoz/zcash/.github/workflows/crunchy.yml@main
+    uses: zeapoz/zcash/.github/workflows/crunchy.yml@crunchy-workflow
