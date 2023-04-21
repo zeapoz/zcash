@@ -1,0 +1,28 @@
+on:
+  workflow_call:
+
+jobs:
+  crunchy:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        filter: [ true, false ]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: runziggurat/crunchy
+      - uses: actions/download-artifact@v3
+        with:
+          name: latest-result
+          path: ./
+      - if: ${{ matrix.filter }}
+        run: |
+          cargo r -- --input-sample latest.json \
+          --out-state latest-filtered.json --filter Zcash
+      - if: ${{ !matrix.filter }}
+        run: |
+          cargo r -- --input-sample latest.json \
+          --out-state latest-unfiltered.json
+      - run: cat *.json

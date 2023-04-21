@@ -53,12 +53,16 @@ jobs:
           name: latest-result
           path: latest.json
 
-  call-process-results-workflow:
+  # call-process-results-workflow:
+  #   needs: [ crawl-network ]
+  #   uses: runziggurat/ziggurat-core/.github/workflows/process-results.yml@main
+  #   with:
+  #     name: crawler
+  #     extension: json
+  #     repository: zcash
+  #   secrets:
+  #     gcp_credentials: ${{ secrets.GCP_CREDENTIALS }}
+
+  call-crunchy-workflow:
     needs: [ crawl-network ]
-    uses: runziggurat/ziggurat-core/.github/workflows/process-results.yml@main
-    with:
-      name: crawler
-      extension: json
-      repository: zcash
-    secrets:
-      gcp_credentials: ${{ secrets.GCP_CREDENTIALS }}
+    uses: zeapoz/zcash/.github/workflows/crunchy.yml@main
