@@ -13,15 +13,21 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: runziggurat/crunchy
+      - uses: Swatinem/rust-cache@v2
+      - uses: cachix/install-nix-action@v19
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/download-artifact@v3
         with:
           name: latest-result
           path: ./
       - if: ${{ matrix.filter }}
+        name: Generate filtered sample
         run: |
           cargo r -- --input-sample latest.json \
-          --out-state latest-filtered.json --filter Zcash
+          --out-state latest-filtered.json --filter-type Zcash
       - if: ${{ !matrix.filter }}
+        name: Generate unfiltered sample
         run: |
           cargo r -- --input-sample latest.json \
           --out-state latest-unfiltered.json
