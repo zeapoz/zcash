@@ -67,4 +67,6 @@ jobs:
 
   call-crunchy-workflow:
     needs: [ crawl-network ]
-    uses: zeapoz/zcash/.github/workflows/crunchy.yml@crunchy-workflow
+    uses: zeapoz/ziggurat-core/.github/workflows/crunchy.yml@crunchy-workflow
+    with:
+      filter: Zcash
