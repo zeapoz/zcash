@@ -23,6 +23,12 @@ The network crawler workflow can be broken down into the following 4 steps:
 
 Details on how to run the crawler, including the required arguments and how to work with the RPC, can be found [here](../../src/tools/crawler/README.md).
 
+### Crunchy
+
+Following the procuring of crawler results, the crawler will call another workflow, crunchy, that computes additional network metrics. This process can roughly be described as:
+1. Clone the [Crunchy](https://github.com/runziggurat/crunchy) repo.
+2. Generate samples from the latest crawler results.
+
 ## Check and Lint
 
 The check and lint workflow currently performs a set of six different checks, these are:
