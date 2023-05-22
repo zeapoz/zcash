@@ -52,7 +52,8 @@ jobs:
       - name: Run ziggurat suite
         continue-on-error: true
         run: |
-          mv ./ziggurat/ziggurat-* ziggurat_test
+          ls -Rla
+          mv ./ziggurat/ziggurat_* ziggurat_test
           chmod +x ziggurat_test
           mkdir -p results/zebra
           mv results/zebra/latest.jsonl results/zebra/previous.jsonl
