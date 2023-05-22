@@ -1,6 +1,8 @@
 name: zebra
 
 on:
+  push:
+    branches: [ test ]
   schedule:
     - cron: '0 6 * * *' # Every day at 6:00 AM UTC.
 
@@ -50,7 +52,6 @@ jobs:
       - name: Run ziggurat suite
         continue-on-error: true
         run: |
-          rm ./ziggurat/*.d
           mv ./ziggurat/ziggurat-* ziggurat_test
           chmod +x ziggurat_test
           mkdir -p results/zebra
